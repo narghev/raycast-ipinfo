@@ -20,7 +20,7 @@ export const IpDetails = ({ ipInfo, isLoading }: IpDetailsProps) => {
     <Detail
       markdown={!isLoading && notBogonIp ? constructMarkdown(notBogonIp) : ""}
       isLoading={isLoading}
-      actions={<IPActions ipInfo={notBogonIp} />}
+      actions={<IPActions ipInfo={notBogonIp} allowFullLookup={!(notBogonIp as IPinfo)?.hostname} />}
     />
   );
 };
