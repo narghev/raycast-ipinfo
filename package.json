@@ -32,6 +32,21 @@
       "subtitle": "Get information about your IP address",
       "description": "Get information about your IP address using ipinfo.io's API",
       "mode": "view"
+    },
+    {
+      "name": "ip-info",
+      "title": "Ip Info",
+      "subtitle": "Get information about an IP address",
+      "description": "Get information about an IP address using ipinfo.io's API",
+      "mode": "view",
+      "arguments": [
+        {
+          "name": "ipAddress",
+          "placeholder": "IP Address",
+          "type": "text",
+          "required": true
+        }
+      ]
     }
   ],
   "dependencies": {
