@@ -1,4 +1,4 @@
-import { Detail } from "@raycast/api";
+import { Action, ActionPanel, Detail } from "@raycast/api";
 import { IPBogon, IPinfo, IPinfoLite } from "node-ipinfo/dist/src/common";
 import { BogonIP } from "./bogon-ip";
 import { getFlagEmoji } from "../utils/country-emoji";
@@ -25,5 +25,16 @@ export const IpDetails = ({ ipInfo, isLoading }: IpDetailsProps) => {
 
   const notBogonIp = ipInfo as IPinfoLite | IPinfo;
 
-  return <Detail markdown={!isLoading && notBogonIp ? constructMarkdown(notBogonIp) : ""} isLoading={isLoading} />;
+  return (
+    <Detail
+      markdown={!isLoading && notBogonIp ? constructMarkdown(notBogonIp) : ""}
+      isLoading={isLoading}
+      actions={
+        <ActionPanel title="IP Details">
+          <Action.CopyToClipboard title="Copy IP" content={ipInfo?.ip || ""} />
+          <Action.CopyToClipboard title="Copy JSON" content={JSON.stringify(ipInfo, null, 2)} />
+        </ActionPanel>
+      }
+    />
+  );
 };
