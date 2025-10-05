@@ -15,18 +15,29 @@
     "Productivity"
   ],
   "license": "MIT",
+  "preferences": [
+    {
+      "name": "apiToken",
+      "type": "password",
+      "required": true,
+      "title": "API Token",
+      "description": "Your IPinfo.io API token",
+      "placeholder": "Enter your API token"
+    }
+  ],
   "commands": [
     {
       "name": "my-ip",
       "title": "My IP",
       "subtitle": "Get information about your IP address",
-      "description": "",
-      "mode": "no-view"
+      "description": "Get information about your IP address using ipinfo.io's API",
+      "mode": "view"
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.103.2",
-    "@raycast/utils": "^1.17.0"
+    "@raycast/utils": "^1.17.0",
+    "node-ipinfo": "^4.1.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.0.4",
