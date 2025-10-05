@@ -1,6 +1,5 @@
 import { getPreferenceValues } from "@raycast/api";
 import { IPinfoLiteWrapper } from "node-ipinfo";
-import { IPBogon, IPinfo, IPinfoLite } from "node-ipinfo/dist/src/common";
 
 interface Preferences {
   apiToken?: string;
@@ -15,7 +14,5 @@ const getClient = () => {
 
   return new IPinfoLiteWrapper(apiToken);
 };
-
-export type AllIpInfo = IPBogon | IPinfoLite | IPinfo;
 
 export const getMyIPInfo = () => getClient().lookupIp();

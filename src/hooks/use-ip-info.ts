@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { AllIpInfo, getMyIPInfo } from "../utils/ip-info";
+import { getMyIPInfo } from "../utils/ip-info";
+import { IPBogon, IPinfo, IPinfoLite } from "node-ipinfo/dist/src/common";
 
 export const useIpInfo = (ip?: string) => {
-  const [ipInfo, setIpInfo] = useState<AllIpInfo | null>(null);
+  const [ipInfo, setIpInfo] = useState<IPBogon | IPinfoLite | IPinfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorText, setErrorText] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchIpInfo = async () => {
       setIsLoading(true);
       if (!ip) {
-        setIpInfo(await getMyIPInfo());
+        try {
+          setIpInfo(await getMyIPInfo());
+        } catch (err) {
+          setErrorText((err as Error).message);
+        }
       }
       setIsLoading(false);
     };
@@ -17,5 +23,5 @@ export const useIpInfo = (ip?: string) => {
     fetchIpInfo();
   }, [ip]);
 
-  return { ipInfo, isLoading };
+  return { ipInfo, isLoading, errorText };
 };
