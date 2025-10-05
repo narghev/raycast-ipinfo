@@ -16,4 +16,3 @@ export const BogonIP = ({ ipInfo }: BogonIPProps) => {
     </List>
   );
 };
-
