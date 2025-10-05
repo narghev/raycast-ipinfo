@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getIpInfo, getMyIPInfo } from "../utils/ip-info";
 import { IPBogon, IPinfo, IPinfoLite } from "node-ipinfo/dist/src/common";
 import { isValidIpV4 } from "../utils/ip-validator";
+import { addToHistory } from "../utils/history";
 
 export const useIpInfo = (ip?: string) => {
   const [ipInfo, setIpInfo] = useState<IPBogon | IPinfoLite | IPinfo | null>(null);
@@ -23,8 +24,12 @@ export const useIpInfo = (ip?: string) => {
           setIsLoading(false);
           return;
         }
+
         try {
-          setIpInfo(await getIpInfo(ip));
+          const ipInfo_ = await getIpInfo(ip);
+
+          setIpInfo(ipInfo_);
+          addToHistory({ ip, info: ipInfo_, timestamp: Date.now() });
         } catch (err) {
           setErrorText((err as Error).message);
         }

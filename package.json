@@ -47,6 +47,13 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "history",
+      "title": "IP Info History",
+      "subtitle": "Get the history of your IP address lookups",
+      "description": "Manage the local history of your IP address lookups",
+      "mode": "view"
     }
   ],
   "dependencies": {
